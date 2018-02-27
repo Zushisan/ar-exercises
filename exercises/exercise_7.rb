@@ -12,16 +12,16 @@ puts "----------"
 # Your code goes here ...
 
 
-puts "Enter a store name: "
-@new_store_name = gets.chomp
+# puts "Enter a store name: "
+# @new_store_name = gets.chomp
 
-@store = Store.new(name: @new_store_name)
+# @store = Store.new(name: @new_store_name)
 
-if @store.save
-  puts "Success"
-else
-  puts @store.errors.full_messages
-end 
+# if @store.save
+#   puts "Success"
+# else
+#   puts @store.errors.full_messages
+# end 
 
 
 # Store.create(name: @new_store)

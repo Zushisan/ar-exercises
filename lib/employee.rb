@@ -3,8 +3,19 @@ class Employee < ActiveRecord::Base
 
   validates :first_name, presence: true
   validates :last_name, presence: true
-  validates :hourly_rate, numericality: { only_integer: true }, inclusion: { in: [40,200] }
+  validates :hourly_rate, numericality: { only_integer: true, greater_than_or_equal_to: 40, less_than_or_equal_to: 200 }
   validates :store, presence: true 
+
+  before_create :generate_password
+  # before_save :generate_password
+  # after_create :generate_password # I would have to update each employees row to populate password. I dont know why I would want to do that.
+
+  private
+
+  def generate_password
+    self.password = (0...8).map { ('a'..'z').to_a[rand(26)] }.join
+  end 
+
 end
 
 
