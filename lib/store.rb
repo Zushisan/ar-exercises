@@ -6,12 +6,21 @@ class Store < ActiveRecord::Base
 
   validate :apparel
 
+  before_destroy :destroy_store
+
   private
 
   def apparel
     if mens_apparel == false && womens_apparel == false
       errors.add(:base, "Store have to sell something !!")
     end
+  end
+
+  def destroy_store
+    return true if self.employees.count == 0
+    errors.add :base, "Cannot delete store with employees"
+    false
+    throw(:abort)
   end
 end
 
